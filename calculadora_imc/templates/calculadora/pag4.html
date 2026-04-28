@@ -1,0 +1,61 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+  <meta charset="UTF-8">
+  <title>Hora do Luffy</title>
+  <style>
+    body {
+      margin: 0;
+      height: 100vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      background: url('https://images.unsplash.com/photo-1507525428034-b723cf961d3e') no-repeat center/cover;
+      font-family: Arial, sans-serif;
+    }
+
+    .container {
+      position: relative;
+      text-align: center;
+    }
+
+    img {
+      width: 300px;
+    }
+
+    .hora {
+      position: absolute;
+      top: 40%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      font-size: 40px;
+      color: #ffffff;
+      background: rgba(0,0,0,0.6);
+      padding: 10px 20px;
+      border-radius: 10px;
+    }
+  </style>
+</head>
+<body>
+
+<div class="container">
+  <div class="hora" id="hora"></div>
+  <img src="https://upload.wikimedia.org/wikipedia/commons/thumb/6/6b/Straw_Hat.svg/512px-Straw_Hat.svg.png" alt="Chapéu do Luffy">
+</div>
+
+<script>
+  function atualizarHora() {
+    const agora = new Date();
+    const horas = String(agora.getHours()).padStart(2, '0');
+    const minutos = String(agora.getMinutes()).padStart(2, '0');
+    const segundos = String(agora.getSeconds()).padStart(2, '0');
+
+    document.getElementById("hora").textContent = `${horas}:${minutos}:${segundos}`;
+  }
+
+  setInterval(atualizarHora, 1000);
+  atualizarHora();
+</script>
+
+</body>
+</html>

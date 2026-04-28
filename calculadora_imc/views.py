@@ -3,7 +3,7 @@ from django.shortcuts import render
 def calcular_imc(request):
     resultado = None
     classificacao = ""
-    
+    imc = None
     if request.method == 'POST':
         peso = float(request.POST.get('peso'))
         altura = float(request.POST.get('altura'))
@@ -18,7 +18,7 @@ def calcular_imc(request):
                 'classificacao': 'A altura não pode ser zero!!!\nInsira novamente as informações e tente novamente.'
                 }
                 )
-        resultado_formatado = f"{imc:.2f}".replace('.', ',')
+        # resultado_formatado = f"{imc:.2f}".replace('.', ',')
         
         # Lógica de Classificação
         if imc < 18.5:
@@ -36,7 +36,20 @@ def calcular_imc(request):
     
     return render(request, 'calculadora/index.html', 
 	    {
-        'resultado': resultado_formatado, 
+        # 'resultado': resultado_formatado, 
+        'resultado': imc, 
         'classificacao': classificacao
 	    }
     )
+
+def texto01 (valor = None):
+    return render(valor, 'calculadora/pag1.html')
+
+def texto02 (valor = None):
+    return render(valor, 'calculadora/pag2.html')
+
+def texto03 (valor = None):
+    return render(valor, 'calculadora/pag3.html')
+
+def texto04 (valor = None):
+    return render(valor, 'calculadora/pag4.html')
