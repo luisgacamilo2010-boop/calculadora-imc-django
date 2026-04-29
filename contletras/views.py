@@ -1,17 +1,15 @@
 from django.shortcuts import render
 
-# Create your views here.
-def contar_as_letras(request):
-    letras = str(input('Seu texto: \n -> '))
-    quantidade = 0 
-
-    for i in letras:
-        if i != ' ':
-            quantidade += 1
-
-    return render(request, 'contar.letras/index.html', 
-            {
-            # 'resultado': resultado_formatado, 
-            'numero_letras': quantidade,
-            }
-        )
+def index(request):
+    resultado = None
+    frase = ""
+    
+    if request.method == "POST":
+        frase = request.POST.get('frase', '')
+        # Conta apenas letras, ignorando espaços
+        resultado = len(frase.replace(" ", ""))
+        
+    return render(request, 'contletras/index.html', {
+        'resultado': resultado, 
+        'frase': frase
+    })
